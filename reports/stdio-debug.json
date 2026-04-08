@@ -1,0 +1,340 @@
+{
+  "meta": {
+    "suiteId": "demo-agent-capability",
+    "suiteName": "Demo Agent Capability Suite",
+    "suiteMode": "capability",
+    "agentName": "Stdio Demo Agent",
+    "startedAt": "2026-04-08T03:52:08.799Z",
+    "completedAt": "2026-04-08T03:52:08.803Z",
+    "seed": "default-seed",
+    "rootDir": "D:\\claude"
+  },
+  "summary": {
+    "taskCount": 3,
+    "trialCount": 3,
+    "avgTaskPassRate": 0,
+    "fullyReliableTasks": 0,
+    "capabilitySignal": "weak"
+  },
+  "tasks": [
+    {
+      "taskId": "policy_refund",
+      "taskName": "Grounded refund answer",
+      "passRate": 0,
+      "avgScore": 0.25,
+      "passedTrials": 0,
+      "totalTrials": 1,
+      "allPassed": false,
+      "estimatedPassAtK": {
+        "1": 0
+      },
+      "latestFailure": "contains_keywords, tool_usage"
+    },
+    {
+      "taskId": "calculator_total",
+      "taskName": "Correct computation with tool usage",
+      "passRate": 0,
+      "avgScore": 0,
+      "passedTrials": 0,
+      "totalTrials": 1,
+      "allPassed": false,
+      "estimatedPassAtK": {
+        "1": 0
+      },
+      "latestFailure": "exact_output, tool_usage"
+    },
+    {
+      "taskId": "restock_workflow",
+      "taskName": "Outcome-based workflow completion",
+      "passRate": 0,
+      "avgScore": 0,
+      "passedTrials": 0,
+      "totalTrials": 1,
+      "allPassed": false,
+      "estimatedPassAtK": {
+        "1": 0
+      },
+      "latestFailure": "state_assertion, tool_usage, contains_keywords"
+    }
+  ],
+  "trials": [
+    {
+      "taskId": "policy_refund",
+      "taskName": "Grounded refund answer",
+      "trialIndex": 0,
+      "seed": 1876362973,
+      "passed": false,
+      "score": 0.25,
+      "uncaughtError": {
+        "name": "Error",
+        "message": "spawn EPERM",
+        "stack": "Error: spawn EPERM\n    at ChildProcess.spawn (node:internal/child_process:421:11)\n    at spawn (node:child_process:796:9)\n    at D:\\claude\\agent_eval\\adapters.js:69:23\n    at new Promise (<anonymous>)\n    at Object.runTask (D:\\claude\\agent_eval\\adapters.js:68:14)\n    at runTrial (D:\\claude\\agent_eval\\core.js:143:35)\n    at async runSuite (D:\\claude\\agent_eval\\core.js:217:22)\n    at async main (D:\\claude\\agent_eval\\cli.js:61:18)"
+      },
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T03:52:08.800Z",
+          "payload": {
+            "taskId": "policy_refund",
+            "prompt": "A user asks: 'Can I issue an instant refund for a failed accessory order worth $80?' Answer using the available policy tool.",
+            "metadata": {
+              "dimension": "grounded-answering"
+            }
+          }
+        },
+        {
+          "type": "error",
+          "at": "2026-04-08T03:52:08.802Z",
+          "payload": {
+            "name": "Error",
+            "message": "spawn EPERM",
+            "stack": "Error: spawn EPERM\n    at ChildProcess.spawn (node:internal/child_process:421:11)\n    at spawn (node:child_process:796:9)\n    at D:\\claude\\agent_eval\\adapters.js:69:23\n    at new Promise (<anonymous>)\n    at Object.runTask (D:\\claude\\agent_eval\\adapters.js:68:14)\n    at runTrial (D:\\claude\\agent_eval\\core.js:143:35)\n    at async runSuite (D:\\claude\\agent_eval\\core.js:217:22)\n    at async main (D:\\claude\\agent_eval\\cli.js:61:18)"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "",
+        "state": {
+          "policyRead": false
+        },
+        "durationMs": 2
+      },
+      "grading": {
+        "passed": false,
+        "score": 0.25,
+        "summary": "contains_keywords, tool_usage",
+        "results": [
+          {
+            "type": "contains_keywords",
+            "weight": 2,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "required": [
+                "$100",
+                "identity verification"
+              ],
+              "matched": [],
+              "output": ""
+            }
+          },
+          {
+            "type": "tool_usage",
+            "weight": 1,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "calls": [],
+              "missing": [
+                "fetch_policy"
+              ],
+              "violations": []
+            }
+          },
+          {
+            "type": "transcript_limits",
+            "weight": 1,
+            "passed": true,
+            "score": 1,
+            "detail": {
+              "messageCount": 0,
+              "toolCallCount": 0,
+              "failures": []
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 1
+      }
+    },
+    {
+      "taskId": "calculator_total",
+      "taskName": "Correct computation with tool usage",
+      "trialIndex": 0,
+      "seed": 326558579,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": {
+        "name": "Error",
+        "message": "spawn EPERM",
+        "stack": "Error: spawn EPERM\n    at ChildProcess.spawn (node:internal/child_process:421:11)\n    at spawn (node:child_process:796:9)\n    at D:\\claude\\agent_eval\\adapters.js:69:23\n    at new Promise (<anonymous>)\n    at Object.runTask (D:\\claude\\agent_eval\\adapters.js:68:14)\n    at runTrial (D:\\claude\\agent_eval\\core.js:143:35)\n    at async runSuite (D:\\claude\\agent_eval\\core.js:217:22)\n    at async main (D:\\claude\\agent_eval\\cli.js:61:18)"
+      },
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T03:52:08.802Z",
+          "payload": {
+            "taskId": "calculator_total",
+            "prompt": "Use the calculator tool to add 14 + 27 + 19, then answer with the numeric result only.",
+            "metadata": {
+              "dimension": "tool-use"
+            }
+          }
+        },
+        {
+          "type": "error",
+          "at": "2026-04-08T03:52:08.803Z",
+          "payload": {
+            "name": "Error",
+            "message": "spawn EPERM",
+            "stack": "Error: spawn EPERM\n    at ChildProcess.spawn (node:internal/child_process:421:11)\n    at spawn (node:child_process:796:9)\n    at D:\\claude\\agent_eval\\adapters.js:69:23\n    at new Promise (<anonymous>)\n    at Object.runTask (D:\\claude\\agent_eval\\adapters.js:68:14)\n    at runTrial (D:\\claude\\agent_eval\\core.js:143:35)\n    at async runSuite (D:\\claude\\agent_eval\\core.js:217:22)\n    at async main (D:\\claude\\agent_eval\\cli.js:61:18)"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "",
+        "state": {
+          "lastCalculation": null
+        },
+        "durationMs": 1
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "exact_output, tool_usage",
+        "results": [
+          {
+            "type": "exact_output",
+            "weight": 2,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "expected": [
+                "60"
+              ],
+              "actual": ""
+            }
+          },
+          {
+            "type": "tool_usage",
+            "weight": 1,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "calls": [],
+              "missing": [
+                "calculator"
+              ],
+              "violations": []
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 1
+      }
+    },
+    {
+      "taskId": "restock_workflow",
+      "taskName": "Outcome-based workflow completion",
+      "trialIndex": 0,
+      "seed": 2529095805,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": {
+        "name": "Error",
+        "message": "spawn EPERM",
+        "stack": "Error: spawn EPERM\n    at ChildProcess.spawn (node:internal/child_process:421:11)\n    at spawn (node:child_process:796:9)\n    at D:\\claude\\agent_eval\\adapters.js:69:23\n    at new Promise (<anonymous>)\n    at Object.runTask (D:\\claude\\agent_eval\\adapters.js:68:14)\n    at runTrial (D:\\claude\\agent_eval\\core.js:143:35)\n    at async runSuite (D:\\claude\\agent_eval\\core.js:217:22)\n    at async main (D:\\claude\\agent_eval\\cli.js:61:18)"
+      },
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T03:52:08.803Z",
+          "payload": {
+            "taskId": "restock_workflow",
+            "prompt": "Check whether SKU-7 needs restocking. If stock is below 5, create a restock order for 20 units and confirm what you did.",
+            "metadata": {
+              "dimension": "outcome"
+            }
+          }
+        },
+        {
+          "type": "error",
+          "at": "2026-04-08T03:52:08.803Z",
+          "payload": {
+            "name": "Error",
+            "message": "spawn EPERM",
+            "stack": "Error: spawn EPERM\n    at ChildProcess.spawn (node:internal/child_process:421:11)\n    at spawn (node:child_process:796:9)\n    at D:\\claude\\agent_eval\\adapters.js:69:23\n    at new Promise (<anonymous>)\n    at Object.runTask (D:\\claude\\agent_eval\\adapters.js:68:14)\n    at runTrial (D:\\claude\\agent_eval\\core.js:143:35)\n    at async runSuite (D:\\claude\\agent_eval\\core.js:217:22)\n    at async main (D:\\claude\\agent_eval\\cli.js:61:18)"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "",
+        "state": {
+          "inventory": {
+            "SKU-7": 3
+          },
+          "restockOrder": null
+        },
+        "durationMs": 0
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "state_assertion, tool_usage, contains_keywords",
+        "results": [
+          {
+            "type": "state_assertion",
+            "weight": 2,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "failures": [
+                {
+                  "path": "restockOrder.sku",
+                  "expected": "SKU-7"
+                },
+                {
+                  "path": "restockOrder.quantity",
+                  "expected": 20
+                },
+                {
+                  "path": "restockOrder.status",
+                  "expected": "created"
+                }
+              ],
+              "state": {
+                "inventory": {
+                  "SKU-7": 3
+                },
+                "restockOrder": null
+              }
+            }
+          },
+          {
+            "type": "tool_usage",
+            "weight": 1,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "calls": [],
+              "missing": [
+                "lookup_inventory",
+                "create_restock_order"
+              ],
+              "violations": []
+            }
+          },
+          {
+            "type": "contains_keywords",
+            "weight": 1,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "required": [
+                "sku-7",
+                "20"
+              ],
+              "matched": [],
+              "output": ""
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 1
+      }
+    }
+  ]
+}

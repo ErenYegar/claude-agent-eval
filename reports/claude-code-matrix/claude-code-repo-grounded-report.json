@@ -1,0 +1,1605 @@
+{
+  "meta": {
+    "suiteId": "claude-code-repo-grounded-suite",
+    "suiteName": "Claude Code Repo Grounded Suite",
+    "suiteMode": "regression",
+    "agentName": "Claude Code 2.1.88 Repo Reader",
+    "startedAt": "2026-04-08T05:30:04.483Z",
+    "completedAt": "2026-04-08T05:30:43.074Z",
+    "seed": "default-seed",
+    "rootDir": "D:\\claude"
+  },
+  "summary": {
+    "taskCount": 5,
+    "trialCount": 10,
+    "avgTaskPassRate": 0,
+    "fullyReliableTasks": 0,
+    "capabilitySignal": "regression-risk"
+  },
+  "tasks": [
+    {
+      "taskId": "repo_cli_flags_snapshot",
+      "taskName": "Extract stable CLI flags from the real repo",
+      "passRate": 0,
+      "avgScore": 0,
+      "passedTrials": 0,
+      "totalTrials": 2,
+      "allPassed": false,
+      "estimatedPassAtK": {
+        "1": 0,
+        "2": 0
+      },
+      "latestFailure": "json_file_assertion"
+    },
+    {
+      "taskId": "repo_marketplace_policy_snapshot",
+      "taskName": "Extract marketplace policy facts from the real repo",
+      "passRate": 0,
+      "avgScore": 0,
+      "passedTrials": 0,
+      "totalTrials": 2,
+      "allPassed": false,
+      "estimatedPassAtK": {
+        "1": 0,
+        "2": 0
+      },
+      "latestFailure": "json_file_assertion"
+    },
+    {
+      "taskId": "repo_official_marketplaces_inventory",
+      "taskName": "Inventory official marketplace names from the real repo",
+      "passRate": 0,
+      "avgScore": 0,
+      "passedTrials": 0,
+      "totalTrials": 2,
+      "allPassed": false,
+      "estimatedPassAtK": {
+        "1": 0,
+        "2": 0
+      },
+      "latestFailure": "json_file_assertion"
+    },
+    {
+      "taskId": "repo_branch_title_rules",
+      "taskName": "Extract branch title derivation rules from the real repo",
+      "passRate": 0,
+      "avgScore": 0,
+      "passedTrials": 0,
+      "totalTrials": 2,
+      "allPassed": false,
+      "estimatedPassAtK": {
+        "1": 0,
+        "2": 0
+      },
+      "latestFailure": "json_file_assertion"
+    },
+    {
+      "taskId": "repo_restore_manifest_snapshot",
+      "taskName": "Extract restore manifest facts from the real repo",
+      "passRate": 0,
+      "avgScore": 0,
+      "passedTrials": 0,
+      "totalTrials": 2,
+      "allPassed": false,
+      "estimatedPassAtK": {
+        "1": 0,
+        "2": 0
+      },
+      "latestFailure": "json_file_assertion"
+    }
+  ],
+  "trials": [
+    {
+      "taskId": "repo_cli_flags_snapshot",
+      "taskName": "Extract stable CLI flags from the real repo",
+      "trialIndex": 0,
+      "seed": 2969779963,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": null,
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T05:30:04.485Z",
+          "payload": {
+            "taskId": "repo_cli_flags_snapshot",
+            "prompt": "Read D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\src\\main.tsx and write cli-flags.json in the current workspace.\nUse this exact JSON shape:\n{\n  \"printShortFlag\": string,\n  \"printLongFlag\": string,\n  \"outputFormats\": string[],\n  \"inputFormats\": string[],\n  \"skipPermissionsFlag\": string\n}\nUse exact flag strings from the source.",
+            "metadata": {}
+          }
+        },
+        {
+          "type": "external_command",
+          "at": "2026-04-08T05:30:04.485Z",
+          "payload": {
+            "command": "node",
+            "args": [
+              "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+              "-p",
+              "--output-format",
+              "json",
+              "--dangerously-skip-permissions",
+              "--max-turns",
+              "16",
+              "--append-system-prompt",
+              "Prefer exact fact extraction from local files. Keep tool use minimal, read only the files named in the task, and write the requested JSON exactly.",
+              "--allowedTools",
+              "Read,Write,Edit,Grep,Glob,LS"
+            ],
+            "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_cli_flags_snapshot-trial-0"
+          }
+        },
+        {
+          "type": "external_command_result",
+          "at": "2026-04-08T05:30:07.837Z",
+          "payload": {
+            "exitCode": 1,
+            "timedOut": false,
+            "stderr": ""
+          }
+        },
+        {
+          "type": "external_agent_result",
+          "at": "2026-04-08T05:30:07.837Z",
+          "payload": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "duration_ms": 1381,
+            "duration_api_ms": 0,
+            "num_turns": 1,
+            "result": "Credit balance is too low",
+            "stop_reason": "stop_sequence",
+            "session_id": "4a1ca7ae-9096-4b76-bbf7-ba7db0ca0d06",
+            "total_cost_usd": 0,
+            "usage": {
+              "input_tokens": 0,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 0,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {},
+            "permission_denials": [],
+            "fast_mode_state": "off",
+            "uuid": "6de0a06a-733e-4043-a2e2-b135de72ecc6"
+          }
+        },
+        {
+          "type": "final_output",
+          "at": "2026-04-08T05:30:07.837Z",
+          "payload": {
+            "output": "Credit balance is too low"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "Credit balance is too low",
+        "state": {},
+        "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_cli_flags_snapshot-trial-0",
+        "durationMs": 3352
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "json_file_assertion",
+        "results": [
+          {
+            "type": "json_file_assertion",
+            "weight": 3,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "path": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_cli_flags_snapshot-trial-0\\cli-flags.json",
+              "failures": [
+                {
+                  "path": "printShortFlag",
+                  "expected": "-p",
+                  "actual": ""
+                },
+                {
+                  "path": "printLongFlag",
+                  "expected": "--print",
+                  "actual": ""
+                },
+                {
+                  "path": "outputFormats",
+                  "expected": [
+                    "text",
+                    "json",
+                    "stream-json"
+                  ],
+                  "actual": []
+                },
+                {
+                  "path": "inputFormats",
+                  "expected": [
+                    "text",
+                    "stream-json"
+                  ],
+                  "actual": []
+                },
+                {
+                  "path": "skipPermissionsFlag",
+                  "expected": "--dangerously-skip-permissions",
+                  "actual": ""
+                }
+              ],
+              "json": {
+                "printShortFlag": "",
+                "printLongFlag": "",
+                "outputFormats": [],
+                "inputFormats": [],
+                "skipPermissionsFlag": ""
+              }
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 2
+      }
+    },
+    {
+      "taskId": "repo_cli_flags_snapshot",
+      "taskName": "Extract stable CLI flags from the real repo",
+      "trialIndex": 1,
+      "seed": 2599578734,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": null,
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T05:30:07.839Z",
+          "payload": {
+            "taskId": "repo_cli_flags_snapshot",
+            "prompt": "Read D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\src\\main.tsx and write cli-flags.json in the current workspace.\nUse this exact JSON shape:\n{\n  \"printShortFlag\": string,\n  \"printLongFlag\": string,\n  \"outputFormats\": string[],\n  \"inputFormats\": string[],\n  \"skipPermissionsFlag\": string\n}\nUse exact flag strings from the source.",
+            "metadata": {}
+          }
+        },
+        {
+          "type": "external_command",
+          "at": "2026-04-08T05:30:07.839Z",
+          "payload": {
+            "command": "node",
+            "args": [
+              "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+              "-p",
+              "--output-format",
+              "json",
+              "--dangerously-skip-permissions",
+              "--max-turns",
+              "16",
+              "--append-system-prompt",
+              "Prefer exact fact extraction from local files. Keep tool use minimal, read only the files named in the task, and write the requested JSON exactly.",
+              "--allowedTools",
+              "Read,Write,Edit,Grep,Glob,LS"
+            ],
+            "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_cli_flags_snapshot-trial-1"
+          }
+        },
+        {
+          "type": "external_command_result",
+          "at": "2026-04-08T05:30:11.107Z",
+          "payload": {
+            "exitCode": 1,
+            "timedOut": false,
+            "stderr": ""
+          }
+        },
+        {
+          "type": "external_agent_result",
+          "at": "2026-04-08T05:30:11.107Z",
+          "payload": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "duration_ms": 1371,
+            "duration_api_ms": 0,
+            "num_turns": 1,
+            "result": "Credit balance is too low",
+            "stop_reason": "stop_sequence",
+            "session_id": "704c66c7-337c-47a4-a5cb-e0d9b47044b0",
+            "total_cost_usd": 0,
+            "usage": {
+              "input_tokens": 0,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 0,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {},
+            "permission_denials": [],
+            "fast_mode_state": "off",
+            "uuid": "b40d08f3-8532-44e9-b400-69e2d3f53f47"
+          }
+        },
+        {
+          "type": "final_output",
+          "at": "2026-04-08T05:30:11.107Z",
+          "payload": {
+            "output": "Credit balance is too low"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "Credit balance is too low",
+        "state": {},
+        "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_cli_flags_snapshot-trial-1",
+        "durationMs": 3268
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "json_file_assertion",
+        "results": [
+          {
+            "type": "json_file_assertion",
+            "weight": 3,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "path": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_cli_flags_snapshot-trial-1\\cli-flags.json",
+              "failures": [
+                {
+                  "path": "printShortFlag",
+                  "expected": "-p",
+                  "actual": ""
+                },
+                {
+                  "path": "printLongFlag",
+                  "expected": "--print",
+                  "actual": ""
+                },
+                {
+                  "path": "outputFormats",
+                  "expected": [
+                    "text",
+                    "json",
+                    "stream-json"
+                  ],
+                  "actual": []
+                },
+                {
+                  "path": "inputFormats",
+                  "expected": [
+                    "text",
+                    "stream-json"
+                  ],
+                  "actual": []
+                },
+                {
+                  "path": "skipPermissionsFlag",
+                  "expected": "--dangerously-skip-permissions",
+                  "actual": ""
+                }
+              ],
+              "json": {
+                "printShortFlag": "",
+                "printLongFlag": "",
+                "outputFormats": [],
+                "inputFormats": [],
+                "skipPermissionsFlag": ""
+              }
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 2
+      }
+    },
+    {
+      "taskId": "repo_marketplace_policy_snapshot",
+      "taskName": "Extract marketplace policy facts from the real repo",
+      "trialIndex": 0,
+      "seed": 1361735961,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": null,
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T05:30:11.117Z",
+          "payload": {
+            "taskId": "repo_marketplace_policy_snapshot",
+            "prompt": "Read D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\src\\utils\\plugins\\schemas.ts and write marketplace-policy.json in the current workspace.\nUse this exact JSON shape:\n{\n  \"officialOrg\": string,\n  \"noAutoUpdateMarketplace\": string,\n  \"relativeJsonPrefix\": string,\n  \"relativeMarkdownSuffix\": string\n}\nUse exact strings from the source.",
+            "metadata": {}
+          }
+        },
+        {
+          "type": "external_command",
+          "at": "2026-04-08T05:30:11.117Z",
+          "payload": {
+            "command": "node",
+            "args": [
+              "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+              "-p",
+              "--output-format",
+              "json",
+              "--dangerously-skip-permissions",
+              "--max-turns",
+              "16",
+              "--append-system-prompt",
+              "Prefer exact fact extraction from local files. Keep tool use minimal, read only the files named in the task, and write the requested JSON exactly.",
+              "--allowedTools",
+              "Read,Write,Edit,Grep,Glob,LS"
+            ],
+            "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_marketplace_policy_snapshot-trial-0"
+          }
+        },
+        {
+          "type": "external_command_result",
+          "at": "2026-04-08T05:30:14.410Z",
+          "payload": {
+            "exitCode": 1,
+            "timedOut": false,
+            "stderr": ""
+          }
+        },
+        {
+          "type": "external_agent_result",
+          "at": "2026-04-08T05:30:14.410Z",
+          "payload": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "duration_ms": 1395,
+            "duration_api_ms": 0,
+            "num_turns": 1,
+            "result": "Credit balance is too low",
+            "stop_reason": "stop_sequence",
+            "session_id": "c2753533-38d8-47a3-8615-cedfe2d24909",
+            "total_cost_usd": 0,
+            "usage": {
+              "input_tokens": 0,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 0,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {},
+            "permission_denials": [],
+            "fast_mode_state": "off",
+            "uuid": "63c34ddc-c37d-4d14-ad34-c216f12188f6"
+          }
+        },
+        {
+          "type": "final_output",
+          "at": "2026-04-08T05:30:14.410Z",
+          "payload": {
+            "output": "Credit balance is too low"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "Credit balance is too low",
+        "state": {},
+        "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_marketplace_policy_snapshot-trial-0",
+        "durationMs": 3293
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "json_file_assertion",
+        "results": [
+          {
+            "type": "json_file_assertion",
+            "weight": 3,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "path": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_marketplace_policy_snapshot-trial-0\\marketplace-policy.json",
+              "failures": [
+                {
+                  "path": "officialOrg",
+                  "expected": "anthropics",
+                  "actual": ""
+                },
+                {
+                  "path": "noAutoUpdateMarketplace",
+                  "expected": "knowledge-work-plugins",
+                  "actual": ""
+                },
+                {
+                  "path": "relativeJsonPrefix",
+                  "expected": "./",
+                  "actual": ""
+                },
+                {
+                  "path": "relativeMarkdownSuffix",
+                  "expected": ".md",
+                  "actual": ""
+                }
+              ],
+              "json": {
+                "officialOrg": "",
+                "noAutoUpdateMarketplace": "",
+                "relativeJsonPrefix": "",
+                "relativeMarkdownSuffix": ""
+              }
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 2
+      }
+    },
+    {
+      "taskId": "repo_marketplace_policy_snapshot",
+      "taskName": "Extract marketplace policy facts from the real repo",
+      "trialIndex": 1,
+      "seed": 3589471596,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": null,
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T05:30:14.412Z",
+          "payload": {
+            "taskId": "repo_marketplace_policy_snapshot",
+            "prompt": "Read D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\src\\utils\\plugins\\schemas.ts and write marketplace-policy.json in the current workspace.\nUse this exact JSON shape:\n{\n  \"officialOrg\": string,\n  \"noAutoUpdateMarketplace\": string,\n  \"relativeJsonPrefix\": string,\n  \"relativeMarkdownSuffix\": string\n}\nUse exact strings from the source.",
+            "metadata": {}
+          }
+        },
+        {
+          "type": "external_command",
+          "at": "2026-04-08T05:30:14.412Z",
+          "payload": {
+            "command": "node",
+            "args": [
+              "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+              "-p",
+              "--output-format",
+              "json",
+              "--dangerously-skip-permissions",
+              "--max-turns",
+              "16",
+              "--append-system-prompt",
+              "Prefer exact fact extraction from local files. Keep tool use minimal, read only the files named in the task, and write the requested JSON exactly.",
+              "--allowedTools",
+              "Read,Write,Edit,Grep,Glob,LS"
+            ],
+            "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_marketplace_policy_snapshot-trial-1"
+          }
+        },
+        {
+          "type": "external_command_result",
+          "at": "2026-04-08T05:30:17.659Z",
+          "payload": {
+            "exitCode": 1,
+            "timedOut": false,
+            "stderr": ""
+          }
+        },
+        {
+          "type": "external_agent_result",
+          "at": "2026-04-08T05:30:17.659Z",
+          "payload": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "duration_ms": 1316,
+            "duration_api_ms": 0,
+            "num_turns": 1,
+            "result": "Credit balance is too low",
+            "stop_reason": "stop_sequence",
+            "session_id": "92482a0c-ee5a-429f-bca3-9c2a7970fe23",
+            "total_cost_usd": 0,
+            "usage": {
+              "input_tokens": 0,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 0,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {},
+            "permission_denials": [],
+            "fast_mode_state": "off",
+            "uuid": "a74b0049-978a-4bf7-8dad-c32ac0530612"
+          }
+        },
+        {
+          "type": "final_output",
+          "at": "2026-04-08T05:30:17.659Z",
+          "payload": {
+            "output": "Credit balance is too low"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "Credit balance is too low",
+        "state": {},
+        "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_marketplace_policy_snapshot-trial-1",
+        "durationMs": 3247
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "json_file_assertion",
+        "results": [
+          {
+            "type": "json_file_assertion",
+            "weight": 3,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "path": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_marketplace_policy_snapshot-trial-1\\marketplace-policy.json",
+              "failures": [
+                {
+                  "path": "officialOrg",
+                  "expected": "anthropics",
+                  "actual": ""
+                },
+                {
+                  "path": "noAutoUpdateMarketplace",
+                  "expected": "knowledge-work-plugins",
+                  "actual": ""
+                },
+                {
+                  "path": "relativeJsonPrefix",
+                  "expected": "./",
+                  "actual": ""
+                },
+                {
+                  "path": "relativeMarkdownSuffix",
+                  "expected": ".md",
+                  "actual": ""
+                }
+              ],
+              "json": {
+                "officialOrg": "",
+                "noAutoUpdateMarketplace": "",
+                "relativeJsonPrefix": "",
+                "relativeMarkdownSuffix": ""
+              }
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 2
+      }
+    },
+    {
+      "taskId": "repo_official_marketplaces_inventory",
+      "taskName": "Inventory official marketplace names from the real repo",
+      "trialIndex": 0,
+      "seed": 3435072743,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": null,
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T05:30:17.662Z",
+          "payload": {
+            "taskId": "repo_official_marketplaces_inventory",
+            "prompt": "Read D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\src\\utils\\plugins\\schemas.ts and write official-marketplaces.json in the current workspace.\nUse this exact JSON shape:\n{\n  \"count\": number,\n  \"officialNames\": string[]\n}\nThe array must include every official marketplace name from the source, sorted alphabetically.",
+            "metadata": {}
+          }
+        },
+        {
+          "type": "external_command",
+          "at": "2026-04-08T05:30:17.662Z",
+          "payload": {
+            "command": "node",
+            "args": [
+              "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+              "-p",
+              "--output-format",
+              "json",
+              "--dangerously-skip-permissions",
+              "--max-turns",
+              "16",
+              "--append-system-prompt",
+              "Prefer exact fact extraction from local files. Keep tool use minimal, read only the files named in the task, and write the requested JSON exactly.",
+              "--allowedTools",
+              "Read,Write,Edit,Grep,Glob,LS"
+            ],
+            "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_official_marketplaces_inventory-trial-0"
+          }
+        },
+        {
+          "type": "external_command_result",
+          "at": "2026-04-08T05:30:26.276Z",
+          "payload": {
+            "exitCode": 1,
+            "timedOut": false,
+            "stderr": ""
+          }
+        },
+        {
+          "type": "external_agent_result",
+          "at": "2026-04-08T05:30:26.276Z",
+          "payload": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "duration_ms": 6752,
+            "duration_api_ms": 0,
+            "num_turns": 1,
+            "result": "Credit balance is too low",
+            "stop_reason": "stop_sequence",
+            "session_id": "541122e6-0583-43f0-8b98-acd2b34c740b",
+            "total_cost_usd": 0,
+            "usage": {
+              "input_tokens": 0,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 0,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {},
+            "permission_denials": [],
+            "fast_mode_state": "off",
+            "uuid": "0254d86f-13cf-4e19-b688-b8985be5b895"
+          }
+        },
+        {
+          "type": "final_output",
+          "at": "2026-04-08T05:30:26.276Z",
+          "payload": {
+            "output": "Credit balance is too low"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "Credit balance is too low",
+        "state": {},
+        "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_official_marketplaces_inventory-trial-0",
+        "durationMs": 8614
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "json_file_assertion",
+        "results": [
+          {
+            "type": "json_file_assertion",
+            "weight": 3,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "path": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_official_marketplaces_inventory-trial-0\\official-marketplaces.json",
+              "failures": [
+                {
+                  "path": "count",
+                  "expected": 8,
+                  "actual": 0
+                },
+                {
+                  "path": "officialNames",
+                  "expected": [
+                    "agent-skills",
+                    "anthropic-marketplace",
+                    "anthropic-plugins",
+                    "claude-code-marketplace",
+                    "claude-code-plugins",
+                    "claude-plugins-official",
+                    "knowledge-work-plugins",
+                    "life-sciences"
+                  ],
+                  "actual": []
+                }
+              ],
+              "json": {
+                "count": 0,
+                "officialNames": []
+              }
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 2
+      }
+    },
+    {
+      "taskId": "repo_official_marketplaces_inventory",
+      "taskName": "Inventory official marketplace names from the real repo",
+      "trialIndex": 1,
+      "seed": 4003641306,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": null,
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T05:30:26.279Z",
+          "payload": {
+            "taskId": "repo_official_marketplaces_inventory",
+            "prompt": "Read D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\src\\utils\\plugins\\schemas.ts and write official-marketplaces.json in the current workspace.\nUse this exact JSON shape:\n{\n  \"count\": number,\n  \"officialNames\": string[]\n}\nThe array must include every official marketplace name from the source, sorted alphabetically.",
+            "metadata": {}
+          }
+        },
+        {
+          "type": "external_command",
+          "at": "2026-04-08T05:30:26.279Z",
+          "payload": {
+            "command": "node",
+            "args": [
+              "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+              "-p",
+              "--output-format",
+              "json",
+              "--dangerously-skip-permissions",
+              "--max-turns",
+              "16",
+              "--append-system-prompt",
+              "Prefer exact fact extraction from local files. Keep tool use minimal, read only the files named in the task, and write the requested JSON exactly.",
+              "--allowedTools",
+              "Read,Write,Edit,Grep,Glob,LS"
+            ],
+            "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_official_marketplaces_inventory-trial-1"
+          }
+        },
+        {
+          "type": "external_command_result",
+          "at": "2026-04-08T05:30:29.605Z",
+          "payload": {
+            "exitCode": 1,
+            "timedOut": false,
+            "stderr": ""
+          }
+        },
+        {
+          "type": "external_agent_result",
+          "at": "2026-04-08T05:30:29.605Z",
+          "payload": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "duration_ms": 1335,
+            "duration_api_ms": 0,
+            "num_turns": 1,
+            "result": "Credit balance is too low",
+            "stop_reason": "stop_sequence",
+            "session_id": "4ad0e3f1-b3d7-41bc-820c-74697d689f10",
+            "total_cost_usd": 0,
+            "usage": {
+              "input_tokens": 0,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 0,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {},
+            "permission_denials": [],
+            "fast_mode_state": "off",
+            "uuid": "77e4709c-3a74-4a1f-9f9c-a504cf9b7b72"
+          }
+        },
+        {
+          "type": "final_output",
+          "at": "2026-04-08T05:30:29.605Z",
+          "payload": {
+            "output": "Credit balance is too low"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "Credit balance is too low",
+        "state": {},
+        "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_official_marketplaces_inventory-trial-1",
+        "durationMs": 3326
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "json_file_assertion",
+        "results": [
+          {
+            "type": "json_file_assertion",
+            "weight": 3,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "path": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_official_marketplaces_inventory-trial-1\\official-marketplaces.json",
+              "failures": [
+                {
+                  "path": "count",
+                  "expected": 8,
+                  "actual": 0
+                },
+                {
+                  "path": "officialNames",
+                  "expected": [
+                    "agent-skills",
+                    "anthropic-marketplace",
+                    "anthropic-plugins",
+                    "claude-code-marketplace",
+                    "claude-code-plugins",
+                    "claude-plugins-official",
+                    "knowledge-work-plugins",
+                    "life-sciences"
+                  ],
+                  "actual": []
+                }
+              ],
+              "json": {
+                "count": 0,
+                "officialNames": []
+              }
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 2
+      }
+    },
+    {
+      "taskId": "repo_branch_title_rules",
+      "taskName": "Extract branch title derivation rules from the real repo",
+      "trialIndex": 0,
+      "seed": 4227455333,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": null,
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T05:30:29.608Z",
+          "payload": {
+            "taskId": "repo_branch_title_rules",
+            "prompt": "Read D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\src\\commands\\branch\\branch.ts and write branch-rules.json in the current workspace.\nUse this exact JSON shape:\n{\n  \"fallbackTitle\": string,\n  \"maxDerivedPromptChars\": number,\n  \"firstBranchSuffix\": string,\n  \"secondBranchSuffixExample\": string\n}\nUse exact strings and numbers from the source.",
+            "metadata": {}
+          }
+        },
+        {
+          "type": "external_command",
+          "at": "2026-04-08T05:30:29.608Z",
+          "payload": {
+            "command": "node",
+            "args": [
+              "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+              "-p",
+              "--output-format",
+              "json",
+              "--dangerously-skip-permissions",
+              "--max-turns",
+              "16",
+              "--append-system-prompt",
+              "Prefer exact fact extraction from local files. Keep tool use minimal, read only the files named in the task, and write the requested JSON exactly.",
+              "--allowedTools",
+              "Read,Write,Edit,Grep,Glob,LS"
+            ],
+            "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_branch_title_rules-trial-0"
+          }
+        },
+        {
+          "type": "external_command_result",
+          "at": "2026-04-08T05:30:32.923Z",
+          "payload": {
+            "exitCode": 1,
+            "timedOut": false,
+            "stderr": ""
+          }
+        },
+        {
+          "type": "external_agent_result",
+          "at": "2026-04-08T05:30:32.924Z",
+          "payload": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "duration_ms": 1395,
+            "duration_api_ms": 0,
+            "num_turns": 1,
+            "result": "Credit balance is too low",
+            "stop_reason": "stop_sequence",
+            "session_id": "755f9a14-7ec9-4147-a960-5d33daac283e",
+            "total_cost_usd": 0,
+            "usage": {
+              "input_tokens": 0,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 0,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {},
+            "permission_denials": [],
+            "fast_mode_state": "off",
+            "uuid": "2ab1dc35-5f73-4d3c-a67a-d26e6f19cf68"
+          }
+        },
+        {
+          "type": "final_output",
+          "at": "2026-04-08T05:30:32.924Z",
+          "payload": {
+            "output": "Credit balance is too low"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "Credit balance is too low",
+        "state": {},
+        "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_branch_title_rules-trial-0",
+        "durationMs": 3316
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "json_file_assertion",
+        "results": [
+          {
+            "type": "json_file_assertion",
+            "weight": 3,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "path": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_branch_title_rules-trial-0\\branch-rules.json",
+              "failures": [
+                {
+                  "path": "fallbackTitle",
+                  "expected": "Branched conversation",
+                  "actual": ""
+                },
+                {
+                  "path": "maxDerivedPromptChars",
+                  "expected": 100,
+                  "actual": 0
+                },
+                {
+                  "path": "firstBranchSuffix",
+                  "expected": " (Branch)",
+                  "actual": ""
+                },
+                {
+                  "path": "secondBranchSuffixExample",
+                  "expected": " (Branch 2)",
+                  "actual": ""
+                }
+              ],
+              "json": {
+                "fallbackTitle": "",
+                "maxDerivedPromptChars": 0,
+                "firstBranchSuffix": "",
+                "secondBranchSuffixExample": ""
+              }
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 2
+      }
+    },
+    {
+      "taskId": "repo_branch_title_rules",
+      "taskName": "Extract branch title derivation rules from the real repo",
+      "trialIndex": 1,
+      "seed": 906000280,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": null,
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T05:30:32.926Z",
+          "payload": {
+            "taskId": "repo_branch_title_rules",
+            "prompt": "Read D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\src\\commands\\branch\\branch.ts and write branch-rules.json in the current workspace.\nUse this exact JSON shape:\n{\n  \"fallbackTitle\": string,\n  \"maxDerivedPromptChars\": number,\n  \"firstBranchSuffix\": string,\n  \"secondBranchSuffixExample\": string\n}\nUse exact strings and numbers from the source.",
+            "metadata": {}
+          }
+        },
+        {
+          "type": "external_command",
+          "at": "2026-04-08T05:30:32.926Z",
+          "payload": {
+            "command": "node",
+            "args": [
+              "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+              "-p",
+              "--output-format",
+              "json",
+              "--dangerously-skip-permissions",
+              "--max-turns",
+              "16",
+              "--append-system-prompt",
+              "Prefer exact fact extraction from local files. Keep tool use minimal, read only the files named in the task, and write the requested JSON exactly.",
+              "--allowedTools",
+              "Read,Write,Edit,Grep,Glob,LS"
+            ],
+            "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_branch_title_rules-trial-1"
+          }
+        },
+        {
+          "type": "external_command_result",
+          "at": "2026-04-08T05:30:36.302Z",
+          "payload": {
+            "exitCode": 1,
+            "timedOut": false,
+            "stderr": ""
+          }
+        },
+        {
+          "type": "external_agent_result",
+          "at": "2026-04-08T05:30:36.302Z",
+          "payload": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "duration_ms": 1454,
+            "duration_api_ms": 0,
+            "num_turns": 1,
+            "result": "Credit balance is too low",
+            "stop_reason": "stop_sequence",
+            "session_id": "9cbe45f1-5881-40ca-8fa3-df224c2d7203",
+            "total_cost_usd": 0,
+            "usage": {
+              "input_tokens": 0,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 0,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {},
+            "permission_denials": [],
+            "fast_mode_state": "off",
+            "uuid": "7258c187-7f97-484b-8d43-673975121a90"
+          }
+        },
+        {
+          "type": "final_output",
+          "at": "2026-04-08T05:30:36.302Z",
+          "payload": {
+            "output": "Credit balance is too low"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "Credit balance is too low",
+        "state": {},
+        "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_branch_title_rules-trial-1",
+        "durationMs": 3376
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "json_file_assertion",
+        "results": [
+          {
+            "type": "json_file_assertion",
+            "weight": 3,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "path": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_branch_title_rules-trial-1\\branch-rules.json",
+              "failures": [
+                {
+                  "path": "fallbackTitle",
+                  "expected": "Branched conversation",
+                  "actual": ""
+                },
+                {
+                  "path": "maxDerivedPromptChars",
+                  "expected": 100,
+                  "actual": 0
+                },
+                {
+                  "path": "firstBranchSuffix",
+                  "expected": " (Branch)",
+                  "actual": ""
+                },
+                {
+                  "path": "secondBranchSuffixExample",
+                  "expected": " (Branch 2)",
+                  "actual": ""
+                }
+              ],
+              "json": {
+                "fallbackTitle": "",
+                "maxDerivedPromptChars": 0,
+                "firstBranchSuffix": "",
+                "secondBranchSuffixExample": ""
+              }
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 2
+      }
+    },
+    {
+      "taskId": "repo_restore_manifest_snapshot",
+      "taskName": "Extract restore manifest facts from the real repo",
+      "trialIndex": 0,
+      "seed": 2307094445,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": null,
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T05:30:36.305Z",
+          "payload": {
+            "taskId": "repo_restore_manifest_snapshot",
+            "prompt": "Read D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\restore-manifest.json and write restore-summary.json in the current workspace.\nUse this exact JSON shape:\n{\n  \"packageName\": string,\n  \"version\": string,\n  \"totalSourcesInMap\": number,\n  \"restoredCount\": number,\n  \"srcTopLevelCount\": number\n}\nUse exact values from the JSON file.",
+            "metadata": {}
+          }
+        },
+        {
+          "type": "external_command",
+          "at": "2026-04-08T05:30:36.305Z",
+          "payload": {
+            "command": "node",
+            "args": [
+              "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+              "-p",
+              "--output-format",
+              "json",
+              "--dangerously-skip-permissions",
+              "--max-turns",
+              "16",
+              "--append-system-prompt",
+              "Prefer exact fact extraction from local files. Keep tool use minimal, read only the files named in the task, and write the requested JSON exactly.",
+              "--allowedTools",
+              "Read,Write,Edit,Grep,Glob,LS"
+            ],
+            "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_restore_manifest_snapshot-trial-0"
+          }
+        },
+        {
+          "type": "external_command_result",
+          "at": "2026-04-08T05:30:39.615Z",
+          "payload": {
+            "exitCode": 1,
+            "timedOut": false,
+            "stderr": ""
+          }
+        },
+        {
+          "type": "external_agent_result",
+          "at": "2026-04-08T05:30:39.615Z",
+          "payload": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "duration_ms": 1433,
+            "duration_api_ms": 0,
+            "num_turns": 1,
+            "result": "Credit balance is too low",
+            "stop_reason": "stop_sequence",
+            "session_id": "a4775efa-6512-473e-92de-2f7aa511a1c5",
+            "total_cost_usd": 0,
+            "usage": {
+              "input_tokens": 0,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 0,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {},
+            "permission_denials": [],
+            "fast_mode_state": "off",
+            "uuid": "30cb6fda-4823-4ebd-9aba-1f83d3990e4e"
+          }
+        },
+        {
+          "type": "final_output",
+          "at": "2026-04-08T05:30:39.615Z",
+          "payload": {
+            "output": "Credit balance is too low"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "Credit balance is too low",
+        "state": {},
+        "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_restore_manifest_snapshot-trial-0",
+        "durationMs": 3310
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "json_file_assertion",
+        "results": [
+          {
+            "type": "json_file_assertion",
+            "weight": 3,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "path": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_restore_manifest_snapshot-trial-0\\restore-summary.json",
+              "failures": [
+                {
+                  "path": "packageName",
+                  "expected": "@anthropic-ai/claude-code",
+                  "actual": ""
+                },
+                {
+                  "path": "version",
+                  "expected": "2.1.88",
+                  "actual": ""
+                },
+                {
+                  "path": "totalSourcesInMap",
+                  "expected": 4756,
+                  "actual": 0
+                },
+                {
+                  "path": "restoredCount",
+                  "expected": 4756,
+                  "actual": 0
+                },
+                {
+                  "path": "srcTopLevelCount",
+                  "expected": 1902,
+                  "actual": 0
+                }
+              ],
+              "json": {
+                "packageName": "",
+                "version": "",
+                "totalSourcesInMap": 0,
+                "restoredCount": 0,
+                "srcTopLevelCount": 0
+              }
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 2
+      }
+    },
+    {
+      "taskId": "repo_restore_manifest_snapshot",
+      "taskName": "Extract restore manifest facts from the real repo",
+      "trialIndex": 1,
+      "seed": 978979136,
+      "passed": false,
+      "score": 0,
+      "uncaughtError": null,
+      "transcript": [
+        {
+          "type": "task",
+          "at": "2026-04-08T05:30:39.617Z",
+          "payload": {
+            "taskId": "repo_restore_manifest_snapshot",
+            "prompt": "Read D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\restore-manifest.json and write restore-summary.json in the current workspace.\nUse this exact JSON shape:\n{\n  \"packageName\": string,\n  \"version\": string,\n  \"totalSourcesInMap\": number,\n  \"restoredCount\": number,\n  \"srcTopLevelCount\": number\n}\nUse exact values from the JSON file.",
+            "metadata": {}
+          }
+        },
+        {
+          "type": "external_command",
+          "at": "2026-04-08T05:30:39.617Z",
+          "payload": {
+            "command": "node",
+            "args": [
+              "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+              "-p",
+              "--output-format",
+              "json",
+              "--dangerously-skip-permissions",
+              "--max-turns",
+              "16",
+              "--append-system-prompt",
+              "Prefer exact fact extraction from local files. Keep tool use minimal, read only the files named in the task, and write the requested JSON exactly.",
+              "--allowedTools",
+              "Read,Write,Edit,Grep,Glob,LS"
+            ],
+            "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_restore_manifest_snapshot-trial-1"
+          }
+        },
+        {
+          "type": "external_command_result",
+          "at": "2026-04-08T05:30:43.073Z",
+          "payload": {
+            "exitCode": 1,
+            "timedOut": false,
+            "stderr": ""
+          }
+        },
+        {
+          "type": "external_agent_result",
+          "at": "2026-04-08T05:30:43.073Z",
+          "payload": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "duration_ms": 1486,
+            "duration_api_ms": 0,
+            "num_turns": 1,
+            "result": "Credit balance is too low",
+            "stop_reason": "stop_sequence",
+            "session_id": "6cde475c-38ad-4caf-9e83-3e0b4cc8eb34",
+            "total_cost_usd": 0,
+            "usage": {
+              "input_tokens": 0,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 0,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {},
+            "permission_denials": [],
+            "fast_mode_state": "off",
+            "uuid": "7a09752a-5833-4615-9b58-a13463319cb5"
+          }
+        },
+        {
+          "type": "final_output",
+          "at": "2026-04-08T05:30:43.074Z",
+          "payload": {
+            "output": "Credit balance is too low"
+          }
+        }
+      ],
+      "outcome": {
+        "output": "Credit balance is too low",
+        "state": {},
+        "cwd": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_restore_manifest_snapshot-trial-1",
+        "durationMs": 3457
+      },
+      "grading": {
+        "passed": false,
+        "score": 0,
+        "summary": "json_file_assertion",
+        "results": [
+          {
+            "type": "json_file_assertion",
+            "weight": 3,
+            "passed": false,
+            "score": 0,
+            "detail": {
+              "path": "D:\\claude\\eval_workspaces\\claude_code_repo_grounded\\repo_restore_manifest_snapshot-trial-1\\restore-summary.json",
+              "failures": [
+                {
+                  "path": "packageName",
+                  "expected": "@anthropic-ai/claude-code",
+                  "actual": ""
+                },
+                {
+                  "path": "version",
+                  "expected": "2.1.88",
+                  "actual": ""
+                },
+                {
+                  "path": "totalSourcesInMap",
+                  "expected": 4756,
+                  "actual": 0
+                },
+                {
+                  "path": "restoredCount",
+                  "expected": 4756,
+                  "actual": 0
+                },
+                {
+                  "path": "srcTopLevelCount",
+                  "expected": 1902,
+                  "actual": 0
+                }
+              ],
+              "json": {
+                "packageName": "",
+                "version": "",
+                "totalSourcesInMap": 0,
+                "restoredCount": 0,
+                "srcTopLevelCount": 0
+              }
+            }
+          }
+        ]
+      },
+      "taskConfig": {
+        "requestedTrials": 2
+      }
+    }
+  ]
+}
