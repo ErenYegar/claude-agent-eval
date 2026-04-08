@@ -1,0 +1,10 @@
+{
+  "type": "stdio_rpc",
+  "name": "Stdio Demo Agent",
+  "command": "node",
+  "args": [
+    "./stdio_demo_agent.js"
+  ],
+  "cwd": ".",
+  "timeoutMs": 10000
+}

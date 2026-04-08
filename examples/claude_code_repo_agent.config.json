@@ -1,0 +1,14 @@
+{
+  "type": "claude_code_cli",
+  "name": "Claude Code 2.1.88 Repo Reader",
+  "nodePath": "node",
+  "cliPath": "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+  "dangerouslySkipPermissions": true,
+  "maxTurns": 16,
+  "timeoutMs": 420000,
+  "systemPrompt": "Prefer exact fact extraction from local files. Keep tool use minimal, read only the files named in the task, and write the requested JSON exactly.",
+  "extraArgs": [
+    "--allowedTools",
+    "Read,Write,Edit,Grep,Glob,LS"
+  ]
+}

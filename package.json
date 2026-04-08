@@ -1,0 +1,10 @@
+{
+  "name": "agent-capability-eval",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "description": "A lightweight agent evaluation harness inspired by Anthropic's Demystifying Evals for AI Agents",
+  "scripts": {
+    "demo": "node agent_eval/cli.js run --suite examples/demo_suite.js --agent examples/demo_agent.js --trials 5 --out reports/demo-report.json"
+  }
+}
