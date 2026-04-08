@@ -1,0 +1,61 @@
+name: Bug report
+description: 报告一个可复现的问题
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈问题。请尽量补充完整信息，方便复现与定位。
+
+  - type: input
+    id: summary
+    attributes:
+      label: 问题概述
+      description: 用一句话说明问题
+      placeholder: 例如：matrix 在 Windows PowerShell 下无法运行 npm 脚本
+    validations:
+      required: true
+
+  - type: textarea
+    id: command
+    attributes:
+      label: 运行命令
+      description: 请粘贴你执行的命令
+      placeholder: |
+        node .\agent_eval\matrix.js --matrix .\examples\demo_eval_matrix.js --out-dir .\reports\demo-matrix --fail-on-gate
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境信息
+      description: 例如操作系统、Node 版本、是否是 self-hosted 环境
+      placeholder: |
+        OS: Windows 11
+        Node: 20.x
+        Shell: PowerShell
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充信息
+      description: 可附上 report、transcript 片段或截图

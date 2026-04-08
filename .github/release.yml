@@ -1,0 +1,21 @@
+changelog:
+  categories:
+    - title: Core Engine
+      labels:
+        - core
+        - engine
+    - title: Eval Suites
+      labels:
+        - suite
+        - eval
+    - title: CI and Automation
+      labels:
+        - ci
+        - github-actions
+    - title: Documentation
+      labels:
+        - documentation
+        - docs
+    - title: Other Changes
+      labels:
+        - "*"

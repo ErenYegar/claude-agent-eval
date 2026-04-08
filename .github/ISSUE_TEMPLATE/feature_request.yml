@@ -1,0 +1,42 @@
+name: Feature request
+description: 提议一个新能力或改进方向
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        欢迎提出新想法。请尽量描述清楚场景与收益。
+
+  - type: input
+    id: summary
+    attributes:
+      label: 功能概述
+      placeholder: 例如：增加更严格的文件变更边界 grader
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你想解决什么问题
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 你建议的方案
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 你考虑过的替代方案
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充信息
