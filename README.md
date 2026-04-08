@@ -174,4 +174,6 @@ npm run ci:demo
 
 ## License
 
-当前仓库未单独声明 license。如需开源发布，建议补充明确的 LICENSE 文件。
+This project is licensed under the Apache License 2.0.
+
+See the [LICENSE](./LICENSE) file for details.
