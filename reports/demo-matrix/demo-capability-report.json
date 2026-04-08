@@ -4,8 +4,8 @@
     "suiteName": "Demo Agent Capability Suite",
     "suiteMode": "capability",
     "agentName": "Heuristic Demo Agent",
-    "startedAt": "2026-04-08T05:31:26.813Z",
-    "completedAt": "2026-04-08T05:31:26.816Z",
+    "startedAt": "2026-04-08T06:16:48.610Z",
+    "completedAt": "2026-04-08T06:16:48.612Z",
     "seed": "default-seed",
     "rootDir": "D:\\claude"
   },
@@ -69,7 +69,7 @@
       "transcript": [
         {
           "type": "task",
-          "at": "2026-04-08T05:31:26.815Z",
+          "at": "2026-04-08T06:16:48.611Z",
           "payload": {
             "taskId": "policy_refund",
             "prompt": "A user asks: 'Can I issue an instant refund for a failed accessory order worth $80?' Answer using the available policy tool.",
@@ -80,7 +80,7 @@
         },
         {
           "type": "message",
-          "at": "2026-04-08T05:31:26.815Z",
+          "at": "2026-04-08T06:16:48.611Z",
           "payload": {
             "channel": "assistant",
             "content": "I should ground this answer in policy before responding."
@@ -88,7 +88,7 @@
         },
         {
           "type": "tool_call",
-          "at": "2026-04-08T05:31:26.815Z",
+          "at": "2026-04-08T06:16:48.611Z",
           "payload": {
             "tool": "fetch_policy",
             "args": {
@@ -98,7 +98,7 @@
         },
         {
           "type": "tool_result",
-          "at": "2026-04-08T05:31:26.815Z",
+          "at": "2026-04-08T06:16:48.611Z",
           "payload": {
             "tool": "fetch_policy",
             "latencyMs": 0,
@@ -110,7 +110,7 @@
         },
         {
           "type": "final_output",
-          "at": "2026-04-08T05:31:26.815Z",
+          "at": "2026-04-08T06:16:48.611Z",
           "payload": {
             "output": "Yes. Because the order is under $100, it can be instantly refunded after identity verification."
           }
@@ -187,7 +187,7 @@
       "transcript": [
         {
           "type": "task",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "taskId": "calculator_total",
             "prompt": "Use the calculator tool to add 14 + 27 + 19, then answer with the numeric result only.",
@@ -198,7 +198,7 @@
         },
         {
           "type": "message",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "channel": "assistant",
             "content": "I'll compute it with the calculator tool."
@@ -206,7 +206,7 @@
         },
         {
           "type": "tool_call",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "tool": "calculator",
             "args": {
@@ -220,7 +220,7 @@
         },
         {
           "type": "tool_result",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "tool": "calculator",
             "latencyMs": 0,
@@ -231,7 +231,7 @@
         },
         {
           "type": "final_output",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "output": "60"
           }
@@ -292,7 +292,7 @@
       "transcript": [
         {
           "type": "task",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "taskId": "restock_workflow",
             "prompt": "Check whether SKU-7 needs restocking. If stock is below 5, create a restock order for 20 units and confirm what you did.",
@@ -303,7 +303,7 @@
         },
         {
           "type": "message",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "channel": "assistant",
             "content": "I'll inspect stock first."
@@ -311,7 +311,7 @@
         },
         {
           "type": "tool_call",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "tool": "lookup_inventory",
             "args": {
@@ -321,7 +321,7 @@
         },
         {
           "type": "tool_result",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "tool": "lookup_inventory",
             "latencyMs": 0,
@@ -333,7 +333,7 @@
         },
         {
           "type": "tool_call",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "tool": "create_restock_order",
             "args": {
@@ -344,7 +344,7 @@
         },
         {
           "type": "tool_result",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "tool": "create_restock_order",
             "latencyMs": 0,
@@ -357,7 +357,7 @@
         },
         {
           "type": "final_output",
-          "at": "2026-04-08T05:31:26.816Z",
+          "at": "2026-04-08T06:16:48.612Z",
           "payload": {
             "output": "Created a restock order for SKU-7 with quantity 20."
           }

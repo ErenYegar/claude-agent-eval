@@ -1,0 +1,39 @@
+name: Demo Eval CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  demo-eval:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Show tool versions
+        run: |
+          node --version
+          npm --version
+
+      - name: Run demo suite
+        run: npm run demo
+
+      - name: Run demo matrix gate
+        run: npm run demo:matrix
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-reports
+          path: reports/

@@ -5,6 +5,8 @@
   "type": "commonjs",
   "description": "A lightweight agent evaluation harness inspired by Anthropic's Demystifying Evals for AI Agents",
   "scripts": {
-    "demo": "node agent_eval/cli.js run --suite examples/demo_suite.js --agent examples/demo_agent.js --trials 5 --out reports/demo-report.json"
+    "demo": "node agent_eval/cli.js run --suite examples/demo_suite.js --agent examples/demo_agent.js --trials 5 --out reports/demo-report.json",
+    "demo:matrix": "node agent_eval/matrix.js --matrix examples/demo_eval_matrix.js --out-dir reports/demo-matrix --fail-on-gate",
+    "ci:demo": "npm run demo && npm run demo:matrix"
   }
 }

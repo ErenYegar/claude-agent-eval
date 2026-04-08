@@ -1,132 +1,41 @@
-# Agent Capability Eval
+# Claude Agent Eval
 
-This project implements a lightweight agent evaluation harness inspired by Anthropic's article [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents).
+[![Demo Eval CI](https://github.com/ErenYegar/claude-agent-eval/actions/workflows/demo-eval.yml/badge.svg)](https://github.com/ErenYegar/claude-agent-eval/actions/workflows/demo-eval.yml)
 
-It maps the article's core concepts directly into code:
+一个基于 Anthropic 文章 [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) 实现的 Agent 评测工具。
 
-- `task`: one problem with a prompt, environment, and success criteria
-- `trial`: one attempt at a task
-- `grader`: code-based scoring logic over transcript and outcome
-- `transcript`: the full log of messages, tool calls, and results
-- `outcome`: the final state plus the final answer
-- `suite`: a collection of capability or regression tasks
-- `harness`: the runner that executes trials, grades them, and aggregates metrics
+这个项目的目标不是做一个“单次问答打分器”，而是做一套更贴近真实 Agent 工程实践的 eval harness。它把文章里的 `task / trial / transcript / outcome / grader / suite / harness` 都落成了可运行代码，并支持：
 
-## Why this matches the article
+- capability eval
+- regression eval
+- transcript 记录与失败复盘
+- 文件级 / JSON 级 / shell 级 grader
+- 本地模块、stdio、HTTP、Claude Code CLI 多种 agent 接入方式
+- matrix 批量执行与 CI gate
 
-The Anthropic post emphasizes a few practical rules:
+## 仓库结构
 
-1. Run multiple trials because agent runs are stochastic.
-2. Grade both the transcript and the final outcome.
-3. Keep the environment isolated per trial.
-4. Read transcripts when scores look odd.
-5. Separate capability evals from regression evals.
-
-This repo implements all five.
-
-## Run the demo
-
-```powershell
-node .\agent_eval\cli.js run --suite .\examples\demo_suite.js --agent .\examples\demo_agent.js --trials 5 --out .\reports\demo-report.json
+```text
+agent_eval/   核心执行器、adapter、report、matrix
+examples/     示例 agent、suite、Claude Code 配置、matrix 配置
+reports/      已生成的示例报告与真实运行报告
+docs/         中文过程文档
 ```
 
-## Plug in your own agent
+## 核心能力
 
-### Option 1: local JS module
+### 1. 结构化评测模型
 
-Create a module that exports `createAgent()` and returns:
+- `task`：单个任务，包含 prompt、环境和 graders
+- `trial`：同一任务的一次执行
+- `transcript`：完整执行轨迹
+- `outcome`：最终输出、状态、cwd、耗时
+- `suite`：一组 capability 或 regression 任务
+- `matrix`：多套 suite 的批量运行入口
 
-```js
-module.exports = {
-  async createAgent() {
-    return {
-      name: "My Agent",
-      async runTask(task, runtime) {
-        runtime.say("Thinking...");
-        const result = await runtime.callTool("my_tool", { input: "x" });
-        return runtime.finish(`Answer: ${result.value}`);
-      }
-    };
-  }
-};
-```
+### 2. 多种 grader
 
-Create a suite module that exports `createSuite()` and defines the task environments and graders.
-
-### Option 2: language-agnostic stdio RPC
-
-If your real agent runs as a separate process, point `--agent` at a JSON config:
-
-```json
-{
-  "type": "stdio_rpc",
-  "name": "My External Agent",
-  "command": "python",
-  "args": ["./my_agent.py"],
-  "cwd": ".",
-  "timeoutMs": 30000
-}
-```
-
-Protocol:
-
-- harness sends one line: `{"type":"run_task","task":{...},"context":{...}}`
-- agent may emit `message`
-- agent may emit `tool_call` with a `requestId`
-- harness replies with `tool_result` or `tool_error`
-- agent ends with `final_output`
-
-There is a starter template at [stdio_agent_template.py](/D:/claude/examples/stdio_agent_template.py).
-
-### Option 3: HTTP adapter
-
-You can also point `--agent` to a JSON config that POSTs the task to an HTTP endpoint and expects JSON back:
-
-```json
-{
-  "type": "http",
-  "name": "My HTTP Agent",
-  "url": "http://localhost:8000/run"
-}
-```
-
-Expected response:
-
-```json
-{
-  "output": "final answer",
-  "transcript": [
-    { "type": "message", "content": "thinking..." }
-  ],
-  "statePatch": {}
-}
-```
-
-### Option 4: Claude Code CLI adapter
-
-If you want to evaluate a real Claude Code build directly, point `--agent` at a config like:
-
-```json
-{
-  "type": "claude_code_cli",
-  "name": "Claude Code 2.1.88",
-  "nodePath": "node",
-  "cliPath": "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
-  "dangerouslySkipPermissions": true,
-  "maxTurns": 8,
-  "timeoutMs": 300000
-}
-```
-
-This adapter runs:
-
-```powershell
-node <cliPath> -p --output-format json --dangerously-skip-permissions
-```
-
-in the task workspace, sends the task prompt over stdin, and grades the final output plus filesystem state.
-
-## Current grader types
+当前支持：
 
 - `exact_output`
 - `contains_keywords`
@@ -141,60 +50,128 @@ in the task workspace, sends the task prompt over stdin, and grades the final ou
 - `json_file_assertion`
 - `shell_assertion`
 
-## Output
+### 3. 多种 agent 接法
 
-The CLI prints a readable summary and can also save a full JSON report with all trials, scores, transcripts, and outcomes for later inspection.
+支持：
 
-## Example external integration
+- 本地 JS 模块
+- 语言无关的 stdio RPC 进程
+- HTTP 服务
+- Claude Code CLI
 
-This command runs the same demo suite against a separate process via stdio RPC:
+## 快速开始
 
-```powershell
-node .\agent_eval\cli.js run --suite .\examples\demo_suite.js --agent .\examples\stdio_demo_agent.config.json --trials 3
-```
+本项目零依赖即可运行核心示例，只需要本机有 Node.js。
 
-This command runs a capability suite against the local Claude Code build you pointed me to:
-
-```powershell
-node .\agent_eval\cli.js run --suite .\examples\claude_code_capability_suite.js --agent .\examples\claude_code_agent.config.json --out .\reports\claude-code-report.json
-```
-
-This command runs a regression suite with repeated trials:
+### 运行 demo suite
 
 ```powershell
-node .\agent_eval\cli.js run --suite .\examples\claude_code_regression_suite.js --agent .\examples\claude_code_agent.config.json --out .\reports\claude-code-regression-report.json
+node .\agent_eval\cli.js run --suite .\examples\demo_suite.js --agent .\examples\demo_agent.js --trials 5 --out .\reports\demo-report.json
 ```
 
-This command runs a repo-grounded regression suite that reads facts from your real Claude Code source tree:
-
-```powershell
-node .\agent_eval\cli.js run --suite .\examples\claude_code_repo_grounded_suite.js --agent .\examples\claude_code_repo_agent.config.json --out .\reports\claude-code-repo-grounded-report.json
-```
-
-To run the full Claude Code eval matrix and save all reports in one folder:
-
-```powershell
-node .\agent_eval\matrix.js --matrix .\examples\claude_code_eval_matrix.js --out-dir .\reports\claude-code-matrix
-```
-
-To use the matrix as a CI gate, add `--fail-on-gate`. The bundled matrix requires:
-
-- capability run signal = `strong` and pass rate = `1.0`
-- regression run signal = `healthy` and pass rate = `1.0`
-- repo-grounded run signal = `healthy` and pass rate = `1.0`
-
-```powershell
-node .\agent_eval\matrix.js --matrix .\examples\claude_code_eval_matrix.js --out-dir .\reports\claude-code-matrix --fail-on-gate
-```
-
-For a quick local smoke test of the gate logic without calling Claude Code:
+### 运行 demo matrix 并作为 gate
 
 ```powershell
 node .\agent_eval\matrix.js --matrix .\examples\demo_eval_matrix.js --out-dir .\reports\demo-matrix --fail-on-gate
 ```
 
-To inspect failures and read trial transcripts:
+### 查看失败样本
 
 ```powershell
-node .\agent_eval\cli.js inspect --report .\reports\claude-code-report.json --failed-only
+node .\agent_eval\cli.js inspect --report .\reports\demo-report.json --failed-only
 ```
+
+## Claude Code 真实评测
+
+这个仓库还包含一套针对 Claude Code 2.1.88 的真实评测配置与 suite，包括：
+
+- capability suite
+- standard regression suite
+- repo-grounded regression suite
+- eval matrix
+
+对应文件位于：
+
+- `examples/claude_code_agent.config.json`
+- `examples/claude_code_repo_agent.config.json`
+- `examples/claude_code_capability_suite.js`
+- `examples/claude_code_regression_suite.js`
+- `examples/claude_code_repo_grounded_suite.js`
+- `examples/claude_code_eval_matrix.js`
+
+示例命令：
+
+```powershell
+node .\agent_eval\cli.js run --suite .\examples\claude_code_capability_suite.js --agent .\examples\claude_code_agent.config.json --out .\reports\claude-code-report.json
+```
+
+```powershell
+node .\agent_eval\cli.js run --suite .\examples\claude_code_regression_suite.js --agent .\examples\claude_code_agent.config.json --out .\reports\claude-code-regression-report.json
+```
+
+```powershell
+node .\agent_eval\cli.js run --suite .\examples\claude_code_repo_grounded_suite.js --agent .\examples\claude_code_repo_agent.config.json --out .\reports\claude-code-repo-grounded-report.json
+```
+
+```powershell
+node .\agent_eval\matrix.js --matrix .\examples\claude_code_eval_matrix.js --out-dir .\reports\claude-code-matrix --fail-on-gate
+```
+
+## GitHub Actions 说明
+
+仓库内已经带了一个 GitHub Actions 工作流：
+
+- `.github/workflows/demo-eval.yml`
+
+它默认做两件事：
+
+1. 运行 demo suite
+2. 运行 demo matrix gate
+
+这样做的原因是：
+
+- demo 评测不依赖外部模型额度
+- demo 评测不依赖你的本地 Claude Code 源码目录
+- 它适合在 GitHub Hosted Runner 上稳定执行
+
+### 为什么 Actions 默认不跑真实 Claude Code 评测
+
+真实 Claude Code 评测依赖：
+
+1. 本地或 self-hosted 环境中的 Claude Code CLI
+2. 真实可访问的目标源码目录
+3. 可用的模型额度 / 账号状态
+
+因此，这部分更适合：
+
+- 在本地运行
+- 在 self-hosted runner 上运行
+- 或者在你未来补齐凭据与运行环境后再扩展工作流
+
+## package.json 脚本
+
+当前提供：
+
+```powershell
+npm run demo
+npm run demo:matrix
+npm run ci:demo
+```
+
+## 过程文档
+
+仓库中还包含两份详细中文文档：
+
+- [工具构建全过程](./docs/agent-eval-tool-build-process.zh-CN.md)
+- [评测 Claude Code 项目全过程](./docs/agent-eval-claude-code-evaluation-process.zh-CN.md)
+
+## 适合继续扩展的方向
+
+- 增加更多 repo-grounded 任务
+- 为报告增加历史趋势对比
+- 增加更细粒度的行为级 grader
+- 为 self-hosted 环境增加真实 Claude Code CI 工作流
+
+## License
+
+当前仓库未单独声明 license。如需开源发布，建议补充明确的 LICENSE 文件。
