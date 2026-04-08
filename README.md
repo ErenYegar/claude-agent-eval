@@ -1,6 +1,20 @@
 # Claude Agent Eval
 
 [![Demo Eval CI](https://github.com/ErenYegar/claude-agent-eval/actions/workflows/demo-eval.yml/badge.svg)](https://github.com/ErenYegar/claude-agent-eval/actions/workflows/demo-eval.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+
+## Quick Links
+
+- License: [Apache-2.0](./LICENSE)
+- CI: [Demo Eval CI](https://github.com/ErenYegar/claude-agent-eval/actions/workflows/demo-eval.yml)
+- Docs:
+  [工具构建全过程](./docs/agent-eval-tool-build-process.zh-CN.md)
+  [评测 Claude Code 项目全过程](./docs/agent-eval-claude-code-evaluation-process.zh-CN.md)
+- Quick Start:
+  `npm run demo`
+  `npm run demo:matrix`
+  `node .\agent_eval\cli.js inspect --report .\reports\demo-report.json --failed-only`
 
 一个基于 Anthropic 文章 [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) 实现的 Agent 评测工具。
 
