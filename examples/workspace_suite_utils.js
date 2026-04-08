@@ -27,6 +27,21 @@ function createWorkspaceFactory(rootDir) {
   };
 }
 
+function resolveWorkspaceRoot(name) {
+  const base = process.env.AGENT_EVAL_WORKSPACE_ROOT || "eval_workspaces";
+  return path.resolve(base, name);
+}
+
+function requireEnvPath(name) {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(
+      `Environment variable "${name}" is required for this suite.`
+    );
+  }
+  return path.resolve(value);
+}
+
 function createEnvironmentFactory(rootDir, taskId, builder) {
   const workspaceFor = createWorkspaceFactory(rootDir);
   return async ({ trialIndex }) => {
@@ -47,5 +62,7 @@ module.exports = {
   writeFile,
   writeJson,
   createWorkspaceFactory,
-  createEnvironmentFactory
+  createEnvironmentFactory,
+  resolveWorkspaceRoot,
+  requireEnvPath
 };

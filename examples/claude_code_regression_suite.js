@@ -3,10 +3,11 @@
 const path = require("path");
 const {
   createEnvironmentFactory,
+  resolveWorkspaceRoot,
   writeFile
 } = require("./workspace_suite_utils");
 
-const ROOT = path.resolve("D:\\claude\\eval_workspaces\\claude_code_regression");
+const ROOT = resolveWorkspaceRoot("claude_code_regression");
 
 function environmentFactory(taskId, builder) {
   return createEnvironmentFactory(ROOT, taskId, builder);

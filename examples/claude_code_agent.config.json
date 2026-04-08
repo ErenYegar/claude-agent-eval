@@ -2,7 +2,7 @@
   "type": "claude_code_cli",
   "name": "Claude Code 2.1.88",
   "nodePath": "node",
-  "cliPath": "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored\\package\\cli.js",
+  "cliPath": "${CLAUDE_CODE_CLI_PATH}",
   "dangerouslySkipPermissions": true,
   "maxTurns": 8,
   "timeoutMs": 300000,

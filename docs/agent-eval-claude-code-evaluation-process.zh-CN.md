@@ -6,7 +6,7 @@
 
 这里的“真实 Agent 项目”指的是用户提供的 Claude Code 项目：
 
-`D:\ClaudeCode_Code\anthropic-ai-claude-code-2.1.88-restored`
+`${CLAUDE_CODE_REPO}`
 
 这份文档与另一份“工具构建过程”文档的区别是：
 
@@ -27,7 +27,7 @@
 
 用户给出的项目路径是：
 
-`D:\ClaudeCode_Code\anthropic-ai-claude-code-2.1.88-restored`
+`${CLAUDE_CODE_REPO}`
 
 从仓库内容看，这个目录至少包含：
 
@@ -41,7 +41,7 @@
 
 其中，对评测接入最关键的文件是：
 
-`D:\ClaudeCode_Code\anthropic-ai-claude-code-2.1.88-restored\package\cli.js`
+`${CLAUDE_CODE_CLI_PATH}`
 
 因为这意味着该项目存在一个可以被 headless 调用的 CLI 入口。
 
@@ -62,7 +62,7 @@
 最先确认的是版本命令是否能跑通：
 
 ```powershell
-node D:\ClaudeCode_Code\anthropic-ai-claude-code-2.1.88-restored\package\cli.js --version
+node ${CLAUDE_CODE_CLI_PATH} --version
 ```
 
 该命令实际返回：
@@ -94,8 +94,8 @@ node D:\ClaudeCode_Code\anthropic-ai-claude-code-2.1.88-restored\package\cli.js 
 
 重点查看了：
 
-1. `D:\ClaudeCode_Code\anthropic-ai-claude-code-2.1.88-restored\src\main.tsx`
-2. `D:\ClaudeCode_Code\anthropic-ai-claude-code-2.1.88-restored\src\cli\print.ts`
+1. `${CLAUDE_CODE_REPO}\src\main.tsx`
+2. `${CLAUDE_CODE_REPO}\src\cli\print.ts`
 
 ### 4.3 确认到的关键能力
 
@@ -115,7 +115,7 @@ node D:\ClaudeCode_Code\anthropic-ai-claude-code-2.1.88-restored\package\cli.js 
 
 ### 5.1 新增的 adapter 类型
 
-为了把这个项目纳入评测工具，我在 `D:\claude\agent_eval\adapters.js` 中新增了：
+为了把这个项目纳入评测工具，我在 `<repo-root>\agent_eval\adapters.js` 中新增了：
 
 `claude_code_cli`
 
@@ -137,12 +137,12 @@ node D:\ClaudeCode_Code\anthropic-ai-claude-code-2.1.88-restored\package\cli.js 
 
 最先创建的 Claude Code 配置文件是：
 
-`D:\claude\examples\claude_code_agent.config.json`
+`<repo-root>\examples\claude_code_agent.config.json`
 
 它包括：
 
 1. `type = "claude_code_cli"`
-2. `cliPath = D:\ClaudeCode_Code\anthropic-ai-claude-code-2.1.88-restored\package\cli.js`
+2. `cliPath = ${CLAUDE_CODE_CLI_PATH}`
 3. `dangerouslySkipPermissions = true`
 4. `maxTurns = 8`
 5. `timeoutMs = 300000`
@@ -207,7 +207,7 @@ CLI 报出类似下面的错误信息：
 
 在 prompt 传输修复后，Claude Code 首次真实跑通 capability suite，并生成了：
 
-`D:\claude\reports\claude-code-report.json`
+`<repo-root>\reports\claude-code-report.json`
 
 早期这一轮的结果已经达到了 100%，说明：
 
@@ -275,7 +275,7 @@ CLI 报出类似下面的错误信息：
 
 对应报告是：
 
-`D:\claude\reports\claude-code-report.json`
+`<repo-root>\reports\claude-code-report.json`
 
 ---
 
@@ -295,7 +295,7 @@ capability suite 的目标是探测能力边界，它可以包含略有挑战、
 
 我为 Claude Code 单独设计了：
 
-`D:\claude\examples\claude_code_regression_suite.js`
+`<repo-root>\examples\claude_code_regression_suite.js`
 
 原则是：
 
@@ -315,7 +315,7 @@ capability suite 的目标是探测能力边界，它可以包含略有挑战、
 
 运行后生成：
 
-`D:\claude\reports\claude-code-regression-report.json`
+`<repo-root>\reports\claude-code-regression-report.json`
 
 结果为：
 
@@ -377,7 +377,7 @@ capability suite 的目标是探测能力边界，它可以包含略有挑战、
 
 第一步是配置层：
 
-新增 `D:\claude\examples\claude_code_repo_agent.config.json`
+新增 `<repo-root>\examples\claude_code_repo_agent.config.json`
 
 主要提高 `maxTurns`、收窄工具、增加“精确抽取”的系统提示。
 
@@ -396,7 +396,7 @@ capability suite 的目标是探测能力边界，它可以包含略有挑战、
 
 修复后，repo-grounded suite 跑到了稳定 100%，报告为：
 
-`D:\claude\reports\claude-code-repo-grounded-report.json`
+`<repo-root>\reports\claude-code-repo-grounded-report.json`
 
 其结果是：
 
@@ -459,11 +459,11 @@ capability suite 的目标是探测能力边界，它可以包含略有挑战、
 
 于是我新增了：
 
-`D:\claude\examples\claude_code_eval_matrix.js`
+`<repo-root>\examples\claude_code_eval_matrix.js`
 
 并实现：
 
-`D:\claude\agent_eval\matrix.js`
+`<repo-root>\agent_eval\matrix.js`
 
 ### 12.2 matrix 包含哪些 run
 
@@ -521,7 +521,7 @@ matrix 运行后会写出：
 
 为了避免每次测试 gate 都调用真实 Claude Code，我还做了：
 
-`D:\claude\examples\demo_eval_matrix.js`
+`<repo-root>\examples\demo_eval_matrix.js`
 
 并实际验证：
 
@@ -601,26 +601,26 @@ Claude Code CLI 在那次运行中不断返回：
 
 ### 15.1 Agent 接入配置
 
-1. `D:\claude\examples\claude_code_agent.config.json`
-2. `D:\claude\examples\claude_code_repo_agent.config.json`
+1. `<repo-root>\examples\claude_code_agent.config.json`
+2. `<repo-root>\examples\claude_code_repo_agent.config.json`
 
 ### 15.2 Claude Code 专属 suite
 
-1. `D:\claude\examples\claude_code_capability_suite.js`
-2. `D:\claude\examples\claude_code_regression_suite.js`
-3. `D:\claude\examples\claude_code_repo_grounded_suite.js`
+1. `<repo-root>\examples\claude_code_capability_suite.js`
+2. `<repo-root>\examples\claude_code_regression_suite.js`
+3. `<repo-root>\examples\claude_code_repo_grounded_suite.js`
 
 ### 15.3 批量与 gate
 
-1. `D:\claude\examples\claude_code_eval_matrix.js`
-2. `D:\claude\agent_eval\matrix.js`
+1. `<repo-root>\examples\claude_code_eval_matrix.js`
+2. `<repo-root>\agent_eval\matrix.js`
 
 ### 15.4 报告文件
 
-1. `D:\claude\reports\claude-code-report.json`
-2. `D:\claude\reports\claude-code-regression-report.json`
-3. `D:\claude\reports\claude-code-repo-grounded-report.json`
-4. `D:\claude\reports\claude-code-matrix\matrix-summary.json`
+1. `<repo-root>\reports\claude-code-report.json`
+2. `<repo-root>\reports\claude-code-regression-report.json`
+3. `<repo-root>\reports\claude-code-repo-grounded-report.json`
+4. `<repo-root>\reports\claude-code-matrix\matrix-summary.json`
 
 ---
 
@@ -632,7 +632,7 @@ Claude Code CLI 在那次运行中不断返回：
 
 用户给出：
 
-`D:\ClaudeCode_Code\anthropic-ai-claude-code-2.1.88-restored`
+`${CLAUDE_CODE_REPO}`
 
 这是整个评测进入真实项目阶段的开始。
 

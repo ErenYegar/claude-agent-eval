@@ -5,13 +5,30 @@ const path = require("path");
 const readline = require("readline");
 const { spawn } = require("child_process");
 
+function expandEnvVars(value) {
+  if (typeof value !== "string") {
+    return value;
+  }
+
+  return value.replace(/\$\{([A-Z0-9_]+)\}/gi, (match, name) => {
+    const resolved = process.env[name];
+    if (resolved === undefined) {
+      throw new Error(
+        `Environment variable "${name}" is required but was not set while resolving config value "${value}".`
+      );
+    }
+    return resolved;
+  });
+}
+
 function resolveFromConfig(configPath, maybeRelativePath) {
   if (!maybeRelativePath) {
     return maybeRelativePath;
   }
-  return path.isAbsolute(maybeRelativePath)
-    ? maybeRelativePath
-    : path.resolve(path.dirname(configPath), maybeRelativePath);
+  const expanded = expandEnvVars(maybeRelativePath);
+  return path.isAbsolute(expanded)
+    ? expanded
+    : path.resolve(path.dirname(configPath), expanded);
 }
 
 async function createAgentFromConfig(config, { configPath }) {

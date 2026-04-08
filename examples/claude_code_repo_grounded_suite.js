@@ -3,12 +3,13 @@
 const path = require("path");
 const {
   createEnvironmentFactory,
+  requireEnvPath,
+  resolveWorkspaceRoot,
   writeJson
 } = require("./workspace_suite_utils");
 
-const ROOT = path.resolve("D:\\claude\\eval_workspaces\\claude_code_repo_grounded");
-const TARGET_REPO =
-  "D:\\ClaudeCode_Code\\anthropic-ai-claude-code-2.1.88-restored";
+const ROOT = resolveWorkspaceRoot("claude_code_repo_grounded");
+const TARGET_REPO = requireEnvPath("CLAUDE_CODE_REPO");
 
 function environmentFactory(taskId, builder) {
   return createEnvironmentFactory(ROOT, taskId, builder);

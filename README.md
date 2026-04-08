@@ -48,7 +48,7 @@ flowchart LR
 ```text
 agent_eval/   核心执行器、adapter、report、matrix
 examples/     示例 agent、suite、Claude Code 配置、matrix 配置
-reports/      已生成的示例报告与真实运行报告
+reports/      本地生成的评测报告（默认不提交到 Git）
 docs/         中文过程文档
 ```
 
@@ -202,6 +202,25 @@ npm run ci:demo
 - 增加更细粒度的行为级 grader
 - 为 self-hosted 环境增加真实 Claude Code CI 工作流
 
+## Public Repo Setup
+
+为避免公开仓库泄露本地目录结构，Claude Code 相关示例通过环境变量注入本地路径，而不是把绝对路径写进仓库。
+
+```powershell
+$env:CLAUDE_CODE_CLI_PATH="D:\path\to\claude-code\package\cli.js"
+$env:CLAUDE_CODE_REPO="D:\path\to\claude-code-repo"
+$env:AGENT_EVAL_WORKSPACE_ROOT=".\eval_workspaces"
+```
+
+- `CLAUDE_CODE_CLI_PATH` 指向 Claude Code 的 `package/cli.js`
+
+- `CLAUDE_CODE_REPO` 指向被评测的 Claude Code 源码仓库
+
+- `AGENT_EVAL_WORKSPACE_ROOT` 指向评测临时工作区根目录；不设置时默认是 `./eval_workspaces`
+
+- `.env.example` 提供了这三个变量的模板
+
+- `reports/` 视为本地生成产物，示例命令仍会写入这里，但默认不会提交到 Git
 ## License
 
 This project is licensed under the Apache License 2.0.
