@@ -55,6 +55,14 @@ cmd /c npm run demo:matrix
 - 优先复用现有 report / loader / adapter 结构
 - 新增 grader 时尽量同时补示例任务
 
+### 公开仓库卫生
+
+- 不要提交 `.env`、`.env.local`、`.env.*` 这类本地环境文件
+- 不要把本机绝对路径直接写进配置、suite、文档或报告
+- Claude Code 相关本地路径应通过 `CLAUDE_CODE_CLI_PATH`、`CLAUDE_CODE_REPO`、`AGENT_EVAL_WORKSPACE_ROOT` 注入
+- 新增示例时，优先使用 `<repo-root>`、`${CLAUDE_CODE_REPO}` 这类占位写法
+- 如果需要分享运行结果，请先脱敏，再决定是否贴到 issue、PR 或文档中
+
 ### 提交粒度
 
 建议拆分为较清晰的提交，例如：
@@ -84,7 +92,13 @@ cmd /c npm run demo:matrix
 
 ## 关于生成文件
 
-仓库中的 `reports/` 用于保留示例与已验证结果。若你的改动会改变 demo 行为，建议同时更新对应报告，使仓库状态保持自洽。
+`reports/` 目录中的内容视为本地生成产物，默认不提交到 Git。
+
+如果你的改动会影响评测输出，建议这样处理：
+
+- 本地重新生成报告并自行检查
+- 如需在 issue 或 PR 中展示结果，优先粘贴摘要或脱敏片段
+- 只有在确有必要保留示例产物时，才考虑单独讨论是否提交脱敏版本
 
 ## License
 
