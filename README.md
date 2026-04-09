@@ -204,6 +204,9 @@ npm run ci:demo
 
 ## Public Repo Setup
 
+当前这份本地仓库的实际根目录是 `D:\claude\claude-agent-eval`。
+如果文档中出现 `<repo-root>`，在你这台机器上可以把它理解为这个目录。
+
 为避免公开仓库泄露本地目录结构，Claude Code 相关示例通过环境变量注入本地路径，而不是把绝对路径写进仓库。
 
 ```powershell

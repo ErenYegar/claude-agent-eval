@@ -1,5 +1,8 @@
 # Contributing
 
+当前本地仓库根目录是 `D:\claude\claude-agent-eval`。
+如果文档里出现 `<repo-root>`，在当前环境下指的就是这个目录。
+
 欢迎为 `claude-agent-eval` 提交 issue、PR 或改进建议。
 
 ## 贡献方向

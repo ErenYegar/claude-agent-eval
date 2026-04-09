@@ -6,6 +6,8 @@
 
 这里的“真实 Agent 项目”指的是用户提供的 Claude Code 项目：
 
+鍦ㄥ綋鍓嶈繖鍙版満鍣ㄤ笂锛屾枃涓殑 `<repo-root>` 瀵瑰簲鐨勫疄闄呰矾寰勬槸 `D:\claude\claude-agent-eval`銆?
+
 `${CLAUDE_CODE_REPO}`
 
 这份文档与另一份“工具构建过程”文档的区别是：
